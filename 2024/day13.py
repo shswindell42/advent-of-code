@@ -61,4 +61,3 @@ with open("./2024/day13.txt") as fp:
                         total_cost += c[0] * cost[i]
                     
 print(int(total_cost))
-        
