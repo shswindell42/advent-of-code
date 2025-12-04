@@ -8,7 +8,6 @@ for bank in lines:
     bank = bank.strip()
     
     joltage = 0
-    
     pos = -1
     for r in range(digits):
         max = -1
@@ -22,6 +21,5 @@ for bank in lines:
         joltage = joltage * 10 + max 
             
     joltages.append(joltage)
-    # print(joltage)
 
 print(f"Sum of joltages: {sum(joltages)}")
