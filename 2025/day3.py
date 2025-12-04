@@ -3,25 +3,25 @@ joltages = []
 with open("./2025/day3.txt", "r") as fp:
     lines = fp.readlines()
     
+digits = 12 # just change to 2 for part 1
 for bank in lines:
     bank = bank.strip()
     
-    # max before last digit
-    max = -1
+    joltage = 0
+    
     pos = -1
-    for i, battery in enumerate(bank[:len(bank) - 1]):
-        if int(battery) > max:
-            max = int(battery)
-            pos = i
+    for r in range(digits):
+        max = -1
+        start = pos + 1
+        end = len(bank) - digits + r + 1
+        for i, battery in enumerate(bank[start:end]):
+            if int(battery) > max:
+                max = int(battery)
+                pos = start + i
 
-    # max after max digit
-    subsequent_max = -1
-    for i, battery in enumerate(bank[pos+1:len(bank)]):
-        if int(battery) > subsequent_max:
-            subsequent_max = int(battery)
+        joltage = joltage * 10 + max 
             
-    joltage = max * 10 + subsequent_max
     joltages.append(joltage)
-    print(joltage)
+    # print(joltage)
 
 print(f"Sum of joltages: {sum(joltages)}")
