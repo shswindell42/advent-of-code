@@ -39,18 +39,26 @@ def find_in_sets(sets, value):
 junction_sets = [{j} for j in range(len(junctions))]
 
 connections_made = 0
-for i in range(1000):
+# for i in range(1000): ## use this for part 1
+i = 0
+while True:
     p, q, _ = junction_pairs[i]
     p_set_index = find_in_sets(junction_sets, p) 
     q_set_index = find_in_sets(junction_sets, q)
     if p_set_index != q_set_index:
         junction_sets[p_set_index] = junction_sets[p_set_index] | junction_sets[q_set_index]
         del junction_sets[q_set_index]
+        if len(junction_sets) == 1:
+            break
+    i += 1
 
-junction_sets.sort(key=lambda s: len(s), reverse=True)
+# for part 1 only
+# junction_sets.sort(key=lambda s: len(s), reverse=True)
 
-total = 1
-for i in range(3):
-    total *= len(junction_sets[i])
+# total = 1
+# for i in range(3):
+#     total *= len(junction_sets[i])
 
-print(total)
+# print(total)
+
+print(junctions[p][0] * junctions[q][0])
